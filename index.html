@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw a Turtle</title>
+    <style>
+        #myCanvas {
+            border: solid 1px black;
+        }
+    </style>
+</head>
+<body>
+    <p align="center">
+        <canvas id="myCanvas"></canvas>
+    </p>
+</body>
+
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.js"></script> 
+
+ <script>
+    var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(400, 400); 
+        frameRate(30);
+        
+        // Draw A Turtle ProcessingJS Code
+        /*
+        * This code uses Object Oriented Design to make it so that when you click a turtle is drawn.
+        */
+
+        // a white background
+        
+        background(255, 255, 255);
+
+        // Create a constructor for object Turtle.
+        var Turtle = function(x, y, width) {
+            this.x = x;
+            this.y = y;
+            this.width = width;
+        };
+
+        // Add a method to draw the turtle
+
+        Turtle.prototype.draw= function() {
+            
+            // Code for drawing turtle goes here
+            
+            //Head
+            fill(65, 150, 0);
+            ellipse(this.x, this.y - this.width/2, this.width - 67/100 * this.width, this.width - 53/100 * this.width);
+            
+            //Front Flippers
+            fill(65, 150, 0);
+            //Left Front Flipper
+            ellipse(this.x - 84/200 * this.width, this.y - 63/200 * this.width, this.width - 107/200 * this.width, this.width - 42/50 * this.width);
+            //Right Front Flipper
+            ellipse(this.x + 86/200 * this.width, this.y - 63/200 * this.width, this.width - 107/200 * this.width, this.width - 42/50 * this.width); 
+            
+            //Back Flippers
+            
+            //Left Back Flipper
+            ellipse(this.x - this.width/2, this.y + 1/5 * this.width, this.width - 107/200 * this.width, this.width - 42/50 * this.width); 
+            //Right Back Flipper
+            ellipse(this.x + 95/200 * this.width, this.y + 1/5 * this.width, this.width - 107/200 * this.width, this.width - 42/50 * this.width);
+            
+            //Tail
+            ellipse(this.x, this.y + 106/200 * this.width, this.width - 21/25 * this.width, this.width - 153/200 * this.width);
+            
+            //Body
+            fill(112, 201, 2);
+            ellipse(this.x, this.y, this.width, this.width);
+            fill(65, 150, 0);
+            ellipse(this.x, this.y, this.width - 45/200 * this.width, this.width - 45/200 * this.width);
+            
+            //Eyes
+            fill(0, 0, 0);
+            //Left Eye
+            ellipse(this.x - 2/25 * this.width, this.y - 120/200 * this.width, this.width - (195/200 * this.width), this.width - (195/200 * this.width));
+            //Right Eye
+            ellipse(this.x + 2/25 * this.width, this.y - 120/200 * this.width, this.width - 195/200 * this.width, this.width - 195/200 * this.width);
+        };
+
+        // Add some text...
+        fill(0, 0, 0);
+        textAlign(CENTER, CENTER);
+        text("Click to make turtles!", 200, 75);
+
+        // Add a mouseClicked function so that when clicked, it will draw a turtle with given parameters
+        mouseClicked = function() {
+            noStroke();
+            var turtleOnClick = new Turtle(mouseX, mouseY, random(50, 100));
+            turtleOnClick.draw();
+        };
+
+
+        //DON'T MESS WITH THESE CURLY BRACES
+    }};
+
+    var canvas = document.getElementById("myCanvas"); // ID was given above.
+    var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+</html>
